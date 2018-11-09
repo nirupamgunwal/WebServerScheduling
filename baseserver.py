@@ -573,7 +573,7 @@ class BaseHTTPRequestHandler(socketserver.StreamRequestHandler):
         every message.
 
         """
-
+        sys.stderr.write("Nirupam Found the Log Files")
         sys.stderr.write("%s - - [%s] %s\n" %
                          (self.address_string(),
                           self.log_date_time_string(),

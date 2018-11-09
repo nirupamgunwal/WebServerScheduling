@@ -9,8 +9,8 @@ see: https://gist.github.com/UniIsland/3346170
  
 __version__ = "0.1"
 __all__ = ["SimpleHTTPRequestHandler"]
-__author__ = "bones7456"
-__home_page__ = "http://li2z.cn/"
+__author__ = "bones7456, Nirupam Gunwal"
+__home_page__ = ""
  
 import os
 import posixpath

@@ -488,6 +488,9 @@ class BaseHTTPRequestHandler(socketserver.StreamRequestHandler):
         version and the current date.
 
         """
+
+        #Getting the log requests from here.
+        # self.log_request("Hello_World")
         self.log_request(code)
         self.send_response_only(code, message)
         self.send_header('Server', self.version_string())
@@ -529,6 +532,8 @@ class BaseHTTPRequestHandler(socketserver.StreamRequestHandler):
 
     def flush_headers(self):
         if hasattr(self, '_headers_buffer'):
+
+            #Something to write for the header..
             self.wfile.write(b"".join(self._headers_buffer))
             self._headers_buffer = []
 
@@ -573,11 +578,18 @@ class BaseHTTPRequestHandler(socketserver.StreamRequestHandler):
         every message.
 
         """
-        sys.stderr.write("Nirupam Found the Log Files")
+
+        #Edit the logs here
+        # sys.stderr.write("Nirupam Found the Log Files")
         sys.stderr.write("%s - - [%s] %s\n" %
                          (self.address_string(),
                           self.log_date_time_string(),
                           format%args))
+        # strlog = ("%s - - [%s] %s\n" %
+        #                  (self.address_string(),
+        #                   self.log_date_time_string(),
+        #                   format%args))
+    
 
     def version_string(self):
         """Return the server software version string."""

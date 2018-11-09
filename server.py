@@ -14,7 +14,7 @@ __home_page__ = "http://li2z.cn/"
  
 import os
 import posixpath
-import http.server
+import baseserver
 import urllib.request, urllib.parse, urllib.error
 import cgi
 import shutil
@@ -23,7 +23,7 @@ import re
 from io import BytesIO
  
  
-class SimpleHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
+class SimpleHTTPRequestHandler(baseserver.BaseHTTPRequestHandler):
  
     """Simple HTTP request handler with GET/HEAD/POST commands.
     This serves files from the current directory and any of its
@@ -269,8 +269,8 @@ class SimpleHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
  
  
 def test(HandlerClass = SimpleHTTPRequestHandler,
-         ServerClass = http.server.HTTPServer):
-    http.server.test(HandlerClass, ServerClass)
+         ServerClass = baseserver.HTTPServer):
+    baseserver.test(HandlerClass, ServerClass)
  
 if __name__ == '__main__':
     test()

@@ -585,10 +585,15 @@ class BaseHTTPRequestHandler(socketserver.StreamRequestHandler):
                          (self.address_string(),
                           self.log_date_time_string(),
                           format%args))
-        # strlog = ("%s - - [%s] %s\n" %
-        #                  (self.address_string(),
-        #                   self.log_date_time_string(),
-        #                   format%args))
+        strlog = ("%s - - [%s] %s\n" %
+                         (self.address_string(),
+                          self.log_date_time_string(),
+                          format%args))
+
+        f= open("logs.txt","a+")
+        f.write(strlog)
+        f.close() 
+
     
 
     def version_string(self):

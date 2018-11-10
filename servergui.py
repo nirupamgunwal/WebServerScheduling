@@ -27,6 +27,7 @@ import os
 import sys
 
 
+
 def st_server():
     """Start server"""
     while True:
@@ -48,6 +49,14 @@ class Application(tk.Frame):
         thread.start_new_thread(st_server, ())
         self.start.config(state='disabled')
         self.text.insert('end', "Server gestartet mit PORT: {}\n".format(PORT))
+        f= open("logs.txt","r")
+        c = f.readlines()
+        for line in c:
+            self.text.insert('end',line)
+        
+        
+        f.close() 
+        
 
     def createWidgets(self):
         """create GUI Tkinter"""
@@ -64,6 +73,7 @@ class Application(tk.Frame):
         self.start["command"] = self.start_server
         self.start.pack({"side": "top", "fill": "x"})
 
+
         #I will write the logs here.
         # sys.stderr.write("HIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII")
 
@@ -73,6 +83,7 @@ class Application(tk.Frame):
         self.QUIT["fg"] = "red"
         self.QUIT["command"] = self.quit
         self.QUIT.pack({"side": "top", "fill": "x"})
+
 
         #Information
         self.lab = tk.Label(self, text="Information Below")

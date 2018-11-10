@@ -34,7 +34,42 @@ def st_server():
         httpd.handle_request()
 
 
+
+
+#STEP FOR LIVE LOGS
+import time
+def follow(thefile):
+    thefile.seek(0,2)
+    while True:
+        line = thefile.readline()
+        if not line:
+            time.sleep(0.1)
+            continue
+        yield line
+
+# if __name__ == '__main__':
+#     logfile = open("run/foo/access-log","r")
+#     loglines = follow(logfile)
+#     for line in loglines:
+#         print line
+
+#END FOR READING LOGS       
+
+
+#FOr a new Window
+
+def create_window():
+    window = tk.Toplevel(root)
+
+
+
+
+
+#Ends HEre         
+
+
 class Application(tk.Frame):
+
 
     def verz(self):
         #select and change directory
@@ -49,13 +84,19 @@ class Application(tk.Frame):
         thread.start_new_thread(st_server, ())
         self.start.config(state='disabled')
         self.text.insert('end', "Server gestartet mit PORT: {}\n".format(PORT))
-        f= open("logs.txt","r")
-        c = f.readlines()
-        for line in c:
-            self.text.insert('end',line)
+        # f= open("logs.txt","r")
+        # c = f.readlines()
+        # for line in c:
+        #     self.text.insert('end',line)
+
         
         
-        f.close() 
+        # f.close() 
+
+        logfile = open("logs.txt","r")
+        loglines = follow(logfile)
+        for line in loglines:
+            self.text.insert('end', line)
         
 
     def createWidgets(self):
@@ -93,6 +134,16 @@ class Application(tk.Frame):
         self.text["width"] = 40
         self.text["height"] = 5
         self.text.pack({"side": "left"})
+
+
+
+        self.windows = tk.Button(root, text="Create new window", command=create_window)
+        self.windows.pack()
+
+
+
+
+
 
     def __init__(self, master=None):
         tk.Frame.__init__(self, master)

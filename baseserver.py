@@ -107,6 +107,10 @@ from functools import partial
 
 from http import HTTPStatus
 
+#Change important for differentiating PC
+# listaddress = []
+# count = 0
+
 
 # Default error message template
 DEFAULT_ERROR_MESSAGE = """\
@@ -264,6 +268,8 @@ class BaseHTTPRequestHandler(socketserver.StreamRequestHandler):
     # the client gets back when sending a malformed request line.
     # Most web servers default to HTTP 0.9, i.e. don't send a status line.
     default_request_version = "HTTP/0.9"
+
+    # count = 0
 
     def parse_request(self):
         """Parse a request (internal).
@@ -490,7 +496,7 @@ class BaseHTTPRequestHandler(socketserver.StreamRequestHandler):
         """
 
         #Getting the log requests from here.
-        # self.log_request("Hello_World")
+        self.log_request("Hello_World")
         self.log_request(code)
         self.send_response_only(code, message)
         self.send_header('Server', self.version_string())
@@ -585,10 +591,18 @@ class BaseHTTPRequestHandler(socketserver.StreamRequestHandler):
                          (self.address_string(),
                           self.log_date_time_string(),
                           format%args))
+
+        
+
+        # if self.address_string() not in listaddress:
+        #     str(count) = str(count) + str(1)
+
         strlog = ("%s - - [%s] %s\n" %
                          (self.address_string(),
                           self.log_date_time_string(),
                           format%args))
+        # listaddress.append(self.address_string())
+
 
         f= open("logs.txt","a+")
         f.write(strlog)

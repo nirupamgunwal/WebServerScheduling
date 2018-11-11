@@ -13,3 +13,4 @@ if __name__ == '__main__':
     loglines = follow(logfile)
     for line in loglines:
         print (line)
+        break

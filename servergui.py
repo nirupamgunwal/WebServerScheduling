@@ -37,15 +37,15 @@ def st_server():
 
 
 #STEP FOR LIVE LOGS
-import time
-def follow(thefile):
-    thefile.seek(0,2)
-    while True:
-        line = thefile.readline()
-        if not line:
-            time.sleep(0.1)
-            continue
-        yield line
+# import time
+# def follow(thefile):
+#     thefile.seek(0,2)
+#     while True:
+#         line = thefile.readline()
+#         if not line:
+#             time.sleep(0.1)
+#             continue
+#         yield line
 
 # if __name__ == '__main__':
 #     logfile = open("run/foo/access-log","r")
@@ -83,7 +83,7 @@ class Application(tk.Frame):
     def start_server(self):
         thread.start_new_thread(st_server, ())
         self.start.config(state='disabled')
-        self.text.insert('end', "Server gestartet mit PORT: {}\n".format(PORT))
+        self.text.insert('end', "Server Started at PORT: {}\n".format(PORT))
         # f= open("logs.txt","r")
         # c = f.readlines()
         # for line in c:
@@ -93,10 +93,10 @@ class Application(tk.Frame):
         
         # f.close() 
 
-        logfile = open("logs.txt","r")
-        loglines = follow(logfile)
-        for line in loglines:
-            self.text.insert('end', line)
+        # logfile = open("logs.txt","r")
+        # loglines = follow(logfile)
+        # for line in loglines:
+        #     self.text.insert('end', line)
         
 
     def createWidgets(self):
@@ -157,6 +157,3 @@ root = tk.Tk()
 root.title("Webserver mit Python")
 app = Application(master=root)
 app.mainloop()
-#{code}
-# servergui.py
-# Displaying servergui.py.
